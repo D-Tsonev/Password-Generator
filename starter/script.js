@@ -89,9 +89,46 @@ var upperCasedCharacters = [
 ];
 
 // Function to prompt user for password options
-function getPasswordOptions() {
 
+
+// function that checks if the length of the password is between 8 and 128 and if the entered value is a number
+function getPasswordLength() {
+
+let passwordLength = parseInt(prompt("Choose a length of password - between 8 and 128 characters"));
+
+  if  (isNaN(passwordLength)  ||  passwordLength < 8 ||  passwordLength > 128) {
+    alert ("Please enter a valid number between 8 and 128")
+    return getPasswordLength()
+  }
+  else {
+  return passwordLength;
+}}
+
+
+function getPasswordOptions() {
+  let passwordLength = getPasswordLength()
+  let isLowerCase = confirm("Would you like your password to contain lowercase characters");
+  let isUpperCase = confirm("Would you like your password to contain Uppercase characters");
+  let isNumbers = confirm("Would you like your password to contain numbers");
+  let isSpecialChar = confirm("Would you like your password to contain special characters" );
+
+  return {
+    passwordLength,
+    isLowerCase,
+    isUpperCase,
+    isNumbers,
+    isSpecialChar
+  }
 }
+
+
+console.log (typeof getPasswordOptions)
+const passwordOptions = getPasswordOptions();
+console.log(Object.values(getPasswordOptions()))
+console.log (typeof getPasswordOptions)
+console.log(passwordOptions.passwordLength);
+console.log(passwordOptions.isLowerCase);
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
