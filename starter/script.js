@@ -88,6 +88,15 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+
+let characterss = {
+  specialCharacters: specialCharacters.slice(),
+  numericCharacters: numericCharacters.slice(),
+  lowerCasedCharacters: lowerCasedCharacters.slice(),
+  upperCasedCharacters: upperCasedCharacters.slice(),
+};
+
+console.log(characterss)
 // Function to prompt user for password options
 
 
@@ -96,14 +105,13 @@ function getPasswordLength() {
 
 let passwordLength = parseInt(prompt("Choose a length of password - between 8 and 128 characters"));
 
-  if  (isNaN(passwordLength)  ||  passwordLength < 8 ||  passwordLength > 128) {
+  if  (isNaN(passwordLength)  ||  (passwordLength < 8 ||  passwordLength > 128)) {
     alert ("Please enter a valid number between 8 and 128")
     return getPasswordLength()
   }
   else {
   return passwordLength;
 }}
-
 
 function getPasswordOptions() {
   let passwordLength = getPasswordLength()
@@ -117,28 +125,38 @@ function getPasswordOptions() {
     isLowerCase,
     isUpperCase,
     isNumbers,
-    isSpecialChar
+    isSpecialChar,
   }
 }
 
 
-console.log (typeof getPasswordOptions)
-const passwordOptions = getPasswordOptions();
-console.log(Object.values(getPasswordOptions()))
-console.log (typeof getPasswordOptions)
-console.log(passwordOptions.passwordLength);
-console.log(passwordOptions.isLowerCase);
+// console.log (typeof getPasswordOptions)
+// const passwordOptions = getPasswordOptions();
+// console.log(Object.values(getPasswordOptions()))
+// console.log (typeof getPasswordOptions)
+// console.log(passwordOptions.passwordLength);
+// console.log(passwordOptions.isLowerCase);
 
 
 // Function for getting a random element from an array
-function getRandom(arr) {
 
+Array.prototype.getRandom = function(){
+  return this[Math.floor(Math.random()*this.length)];
 }
 
+
+let password = ''
 // Function to generate password with user input
 function generatePassword() {
+  for (let i = 0; i < passwordLength.length; i++) {
+    const element = array[i];
+    
+  }
+
 
 }
+
+take the number check 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
