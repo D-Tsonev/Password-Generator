@@ -89,14 +89,16 @@ var upperCasedCharacters = [
 ];
 
 
-let characterss = {
+const passwordArrays = {
   specialCharacters: specialCharacters.slice(),
   numericCharacters: numericCharacters.slice(),
   lowerCasedCharacters: lowerCasedCharacters.slice(),
   upperCasedCharacters: upperCasedCharacters.slice(),
 };
 
-console.log(characterss)
+
+
+// console.log(Object.values(passwordOptions.specialCharacters))
 // Function to prompt user for password options
 
 
@@ -130,12 +132,10 @@ function getPasswordOptions() {
 }
 
 
-// console.log (typeof getPasswordOptions)
-// const passwordOptions = getPasswordOptions();
-// console.log(Object.values(getPasswordOptions()))
-// console.log (typeof getPasswordOptions)
-// console.log(passwordOptions.passwordLength);
-// console.log(passwordOptions.isLowerCase);
+// console.log (typeof passwordOption)
+// console.log(passwordOption.passwordLength);
+// console.log(passwordOption.isLowerCase);
+
 
 
 // Function for getting a random element from an array
@@ -144,19 +144,43 @@ Array.prototype.getRandom = function(){
   return this[Math.floor(Math.random()*this.length)];
 }
 
+// console.log(Object.values(passwordArrays.specialCharacters.getRandom()))
 
-let password = ''
+
 // Function to generate password with user input
+
 function generatePassword() {
-  for (let i = 0; i < passwordLength.length; i++) {
-    const element = array[i];
-    
+  const passwordOption = getPasswordOptions();
+  let password = '';
+
+  for (let i = 0; i < passwordOption.passwordLength; i++) {
+    let tempPassword = '';
+
+    if (passwordOption.isLowerCase) {
+      tempPassword = passwordArrays.lowerCasedCharacters.getRandom();
+      console.log(tempPassword)
+    } else if (passwordOption.isUpperCase) {
+      tempPassword = passwordArrays.upperCasedCharacters.getRandom();
+      console.log(tempPassword)
+
+    } else if (passwordOption.isNumbers) {
+      tempPassword = passwordArrays.numericCharacters.getRandom();
+      
+
+    } else {
+      tempPassword = passwordArrays.specialCharacters.getRandom();
+      
+
+    }
+
+    password += tempPassword;
+    console.log('final pass',password)
   }
-
-
+  console.log(password)
+  return password;
+  
 }
-
-take the number check 
+generatePassword() 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
