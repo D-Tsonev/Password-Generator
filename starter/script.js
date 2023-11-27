@@ -89,18 +89,18 @@ var upperCasedCharacters = [
 ];
 
 
+// Created an object that stores all possible variances of password characters
+
 const passwordArrays = {
-  specialCharacters: specialCharacters.slice(),
-  numericCharacters: numericCharacters.slice(),
-  lowerCasedCharacters: lowerCasedCharacters.slice(),
-  upperCasedCharacters: upperCasedCharacters.slice(),
+  isSpecialChar: specialCharacters.slice(),
+  isNumbers: numericCharacters.slice(),
+  isLowerCase: lowerCasedCharacters.slice(),
+  isUpperCase: upperCasedCharacters.slice(),
 };
 
 
 
-// console.log(Object.values(passwordOptions.specialCharacters))
-// Function to prompt user for password options
-
+// Function to prompt user for password options 
 
 // function that checks if the length of the password is between 8 and 128 and if the entered value is a number
 function getPasswordLength() {
@@ -115,30 +115,30 @@ let passwordLength = parseInt(prompt("Choose a length of password - between 8 an
   return passwordLength;
 }}
 
+
+// const passwordLength = getPasswordLength()
+
+// function that prompt the user what to include as characters in the password.
+
 function getPasswordOptions() {
-  let passwordLength = getPasswordLength()
+  // let passwordLength = getPasswordLength()
   let isLowerCase = confirm("Would you like your password to contain lowercase characters");
   let isUpperCase = confirm("Would you like your password to contain Uppercase characters");
   let isNumbers = confirm("Would you like your password to contain numbers");
   let isSpecialChar = confirm("Would you like your password to contain special characters" );
 
-  const userChoice = [
-    { key: 'passwordLength', value: passwordLength },
+
+  const userOptions = [
+    // { key: 'passwordLength', value: passwordLength },
     { key: 'isLowerCase', value: isLowerCase },
     { key: 'isUpperCase', value: isUpperCase },
     { key: 'isNumbers', value: isNumbers },
     { key: 'isSpecialChar', value: isSpecialChar }
   ];
-  return userChoice
+  return userOptions
   
 }
 
-const userChoices = getPasswordOptions();
-console.log(userChoices)
-
-const filteredChoices = userChoices.filter((userChoice) => userChoice.value);
-
-console.log(filteredChoices);
 
 // Function for getting a random element from an array
 
@@ -146,59 +146,36 @@ Array.prototype.getRandom = function(){
   return this[Math.floor(Math.random()*this.length)];
 }
 
-// const passwordOption = getPasswordOptions();
-// console.log(passwordOption)
-// console.log(passwordOption.isLowerCase)
-// console.log(passwordOption.passwordLength)
-// console.log(passwordArrays.specialCharacters.getRandom())
+
+function generatePassword() {
+  const passwordLength = getPasswordLength()
+  const userOptions = getPasswordOptions();
+  const filteredChoices = userOptions.filter((userOption) => userOption.value);
 
 
-// console.log(Object.values(passwordArrays.specialCharacters.getRandom()))
+  console.log('selected options by the user',filteredChoices);
+
+// Arrays with selected character sets
+  const selectedCharSets = filteredChoices.map((choice) => passwordArrays[choice.key]);
+  console.log('selected char sets',selectedCharSets)
 
 
-// Function to generate password with user input
+// merged the results to one array that contains all selected by the user chars that can be include in the password
+  const merged = selectedCharSets.flat(1)
+  console.log(merged)
 
-
-
-
-// function generatePassword() {
-//   const passwordOption = getPasswordOptions();
-//   let password = '';
-//   console.log('password options ->',passwordOption)
-
-//   for (let i = 0; i < passwordOption.passwordLength; i++) {
-//     let tempPassword = '';
-//     if (passwordOption.isLowerCase) {
-//       tempPassword = passwordArrays.lowerCasedCharacters.getRandom();
-//       console.log('temp password',tempPassword)
-//       password+=tempPassword 
-
-//       console.log('line 169, password',password)
-
-//     } else if (passwordOption.isUpperCase) {
-//       tempPassword = passwordArrays.upperCasedCharacters.getRandom();
-//       console.log("temp password line 175",tempPassword)
-//       password+=tempPassword 
-//       console.log('line 177, password',password)
-
-//     } else if (passwordOption.isNumbers) {
-//       tempPassword = passwordArrays.numericCharacters.getRandom();
-      
-
-//     } else {
-//       tempPassword = passwordArrays.specialCharacters.getRandom();
-      
-
-//     }
-
-//     // password;
-//     console.log('final pass',password)
-//   }
-//   console.log(password)
-//   return password;
   
-// }
-// generatePassword()
+  let password=''
+for (let i = 0; i < passwordLength; i++) {
+  const chars = merged.getRandom();
+
+  password += chars;
+}
+  console.log('password',password)
+  return password
+
+}
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
