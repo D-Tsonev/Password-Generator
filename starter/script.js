@@ -140,10 +140,10 @@ function getPasswordOptions() {
     { key: 'isNumbers', value: isNumbers },
     { key: 'isSpecialChar', value: isSpecialChar }
   ];
+  // console.log(typeof userOptions, userOptions)
   return userOptions
   
 }
-
 
 // Function for getting a random element from an array
 
