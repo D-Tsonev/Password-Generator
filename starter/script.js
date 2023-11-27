@@ -153,16 +153,16 @@ function generatePassword() {
   const filteredChoices = userOptions.filter((userOption) => userOption.value);
 
 
-  console.log('selected options by the user',filteredChoices);
+  // console.log('selected options by the user',filteredChoices);
 
 // Arrays with selected character sets
   const selectedCharSets = filteredChoices.map((choice) => passwordArrays[choice.key]);
-  console.log('selected char sets',selectedCharSets)
+  // console.log('selected char sets',selectedCharSets)
 
 
 // merged the results to one array that contains all selected by the user chars that can be include in the password
   const merged = selectedCharSets.flat(1)
-  console.log(merged)
+  // console.log(merged)
 
   
   let password=''

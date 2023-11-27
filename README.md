@@ -1,17 +1,12 @@
-# Module 5 Challenge: Password Generator
+# Password Generator
 
 ## Overview
 
-This week’s challenge requires you to create an application that an employee can use to generate a random password based on criteria they’ve selected by modifying starter code. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished user interface that is responsive, ensuring that it adapts to multiple screen sizes.
+This project is a web application that generates a random password based on user-selected criteria. It runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code.
 
-The password can include special characters. If you’re unfamiliar with these, see this [list of Password Special Characters from the OWASP Foundation](https://www.owasp.org/index.php/Password_special_characters).
+
 
 ## Instructions
-
-The following image shows the web application's appearance and functionality:
-
-![password generator demo](./assets/05-javascript-challenge-demo.png)
-
 
 * Generate a password when the button is clicked
   * Present a series of prompts for password criteria
@@ -25,55 +20,53 @@ The following image shows the web application's appearance and functionality:
   * Code should validate for each input and at least one character type should be selected
   * Once prompts are answered then the password should be generated and displayed in an alert or written to the page
 
-## Grading Requirements
+## The Technologies used
 
-This challenge is graded based on the following criteria: 
+- **HTML5**
+- **CSS3**
+- **JavaScript**
+- **Git and GitHub**
 
-### Technical Acceptance Criteria: 40%
+## Approach
 
-* Satisfies all of the above acceptance criteria plus the following:
+This password generator application follows a structured approach to ensure the generated passwords meet user-specified criteria. Here's an overview of the key components:
 
-  * The challenge should not produce any errors in the console when you inspect it using Chrome DevTools.
+**Storing Password Options:**
 
-### Deployment: 32%
+   - All possible password options, including special characters, numbers, lowercase, and uppercase letters, are stored in an object called `passwordArrays`. This object serves as a reference for the available character sets.
 
-* Application deployed at live URL.
+**User Input Handling:**
 
-* Application loads with no errors.
+The application prompts the user to specify the desired password length, ensuring it falls within the range of 8 to 128 characters.
+Users are then asked if they want their password to include lowercase characters, uppercase characters, numbers, and special characters. At least one of these options must be selected.
 
-* Application GitHub URL submitted.
+**Random Element Selection:**
 
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
+The application extends the Array prototype to include a getRandom method, facilitating the selection of a random element from an array.
 
 
-## Review
+**Password Generation:**
 
-You are required to submit the following for review:
+The generatePassword function combines the user-selected options and password length to create a random password.
+It filters the selected options, maps them to the corresponding character sets from passwordArrays, and flattens the results into a single array.
+A loop then iterates over the desired password length, randomly selecting characters from the merged array to construct the final password.
 
-* The URL of the deployed application.
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
----
+## Usage
 
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+The application presents a series of prompts for password criteria, including the length of the password and the types of characters to include (lowercase, uppercase, numeric, special characters). 
+
+The code validates each input, ensuring that the password meets the specified criteria. At least one character type must be selected.
+
+
+1. Clone the repository.
+2. Open `index.html` in your preferred web browser.
+
+
+<p>Link to  <a href="https://github.com/D-Tsonev/Password-Generator">Repository</a><p>
+
+<p>Link to  <a href="https://d-tsonev.github.io/Password-Generator/">GitHub Page</a><p>
+
+
+![](./assets/demo.png)
