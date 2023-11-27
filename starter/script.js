@@ -127,6 +127,11 @@ function getPasswordOptions() {
   let isNumbers = confirm("Would you like your password to contain numbers");
   let isSpecialChar = confirm("Would you like your password to contain special characters" );
 
+  if (!isLowerCase && !isUpperCase && !isNumbers && !isSpecialChar) {
+    alert("Please select at least one option for the password");
+    return getPasswordOptions();
+  }
+
 
   const userOptions = [
     // { key: 'passwordLength', value: passwordLength },
